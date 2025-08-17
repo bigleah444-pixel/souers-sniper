@@ -4218,24 +4218,3 @@ with client:
     
 
 
-
-from flask import Flask
-import threading
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "sniper Source is running!"
-
-def run_flask():
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
-
-flask_thread = threading.Thread(target=run_flask)
-flask_thread.start()
-
-
-loop = asyncio.get_event_loop()
-loop.create_task(update_username())  # 
-client.run_until_disconnected()
