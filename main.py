@@ -2629,7 +2629,7 @@ async def check_status(event):
  ——————————————
 [𝗦𝗢𝗨𝗥𝗖𝗘 𝙎𝙉𝙄𝙋𝙀𝙍](t.me/l_l_T14) – @l_l_T14**
 """
-    await event.respond(text)
+    await event.edit(text)
     from telethon import TelegramClient, events
 import asyncio
 
