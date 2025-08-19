@@ -2594,18 +2594,34 @@ import time, platform
 from telethon import __version__ as telethon_version
 
 # دالة لحساب الوقت من التشغيل (اذا عندك دالة أفضل استبدلها)
+from telethon import events
+import telethon
+telethon_version = telethon.__version__
+
+start_time = time.time()
+
 def get_uptime():
-    return "1h 23m"  # مثال
+    total_seconds = int(time.time() - start_time)
+    mins, sec = divmod(total_seconds, 60)
+    hour, mins = divmod(mins, 60)
+    return f"{hour}h {mins}m {sec}s"
 
 @client.on(events.NewMessage(pattern=r'^\.فحص$'))
 async def check_status(event):
     start_ping = time.time()
+
+   
     end_ping = time.time()
     ping_ms = int((end_ping - start_ping) * 1000)
 
+    # نسخ الإصدارات
     telever = telethon_version
     pyver = platform.python_version()
+
     uptime = get_uptime()
+
+    # اسم المستخدم (mention)
+    
 
     text = f"""**⌯ 𝗦𝗢𝗨𝗥𝗖𝗘 𝙎𝙉𝙄𝙋𝙀𝙍
 ——————————————
@@ -2619,12 +2635,8 @@ async def check_status(event):
     # إرسال الصورة مع النص كـ caption
     await event.respond(
         file="https://raw.githubusercontent.com/bigleah444-pixel/sors-mortada/324331a87fcb639dc238d11d4946ae3f541e3647/IMG_8063.jpeg",
-        caption=text
+        message=text
     )
-
-    await event.edit(text)
-    from telethon import TelegramClient, events
-import asyncio
 
 
 memory_words = [
