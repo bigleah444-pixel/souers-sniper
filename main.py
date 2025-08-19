@@ -4116,16 +4116,12 @@ import sys
 import asyncio
 from telethon import TelegramClient, events
 
-# ====== بيانات البوت ======
-api_id = int(os.environ.get("API_ID"))   # خلي API_ID هنا أو من متغيرات البيئة
-api_hash = os.environ.get("API_HASH")    # خلي API_HASH هنا أو من متغيرات البيئة
-session = os.environ.get("SESSION", "sniper")
 
 BRANCH = "main"
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 LOGO_URL = "https://raw.githubusercontent.com/bigleah444-pixel/sors-mortada/324331a87fcb639dc238d11d4946ae3f541e3647/IMG_8063.jpeg"
 
-client = TelegramClient(session, api_id, api_hash)
+
 
 
 async def edit_or_reply(event, text, file=None):
@@ -4190,10 +4186,6 @@ async def update_and_restart(event):
         await event.respond(f"**حدث خطأ اثناء التحديث ❌**\n`{str(e)}`", file=LOGO_URL)
 
 
-if __name__ == "__main__":
-    print("🚀 Starting Sniper Source...")
-    client.start()
-    client.run_until_disconnected()
 
 #حب احمد المطي لاتغير شيء بتحديث هاذ 👍🏻#
 @client.on(events.NewMessage(pattern="/N"))
