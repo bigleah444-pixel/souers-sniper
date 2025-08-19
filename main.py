@@ -2589,46 +2589,39 @@ async def monitor_users():
                         pass
         await asyncio.sleep(30)
         from telethon import events, __version__ as telethon_version
-import platform
-import time
-import asyncio
-from telethon import events
-import telethon
-telethon_version = telethon.__version__
+from telethon import TelegramClient, events
+import time, platform
+from telethon import __version__ as telethon_version
 
-start_time = time.time()
-
+# دالة لحساب الوقت من التشغيل (اذا عندك دالة أفضل استبدلها)
 def get_uptime():
-    total_seconds = int(time.time() - start_time)
-    mins, sec = divmod(total_seconds, 60)
-    hour, mins = divmod(mins, 60)
-    return f"{hour}h {mins}m {sec}s"
+    return "1h 23m"  # مثال
 
 @client.on(events.NewMessage(pattern=r'^\.فحص$'))
 async def check_status(event):
     start_ping = time.time()
-
-   
     end_ping = time.time()
     ping_ms = int((end_ping - start_ping) * 1000)
 
-    # نسخ الإصدارات
     telever = telethon_version
     pyver = platform.python_version()
-
     uptime = get_uptime()
-
-    # اسم المستخدم (mention)
-    
 
     text = f"""**⌯ 𝗦𝗢𝗨𝗥𝗖𝗘 𝙎𝙉𝙄𝙋𝙀𝙍
 ——————————————
- ⌯ ‹ 𝘱𝘺𝘛𝘩𝘰𝘯 ⭟ {pyver} 
+⌯ ‹ 𝘱𝘺𝘛𝘩𝘰𝘯 ⭟ {pyver} 
 ⌯ ‹ 𝘜𝘱𝘛𝘪𝘮𝘦 ⭟ {uptime}
 ⌯ ‹ 𝘗𝘪𝘯𝘨 ⭟ {ping_ms} ms
- ——————————————
+——————————————
 [𝗦𝗢𝗨𝗥𝗖𝗘 𝙎𝙉𝙄𝙋𝙀𝙍](t.me/l_l_T14) – @l_l_T14**
 """
+
+    # إرسال الصورة مع النص كـ caption
+    await event.respond(
+        file="https://raw.githubusercontent.com/bigleah444-pixel/sors-mortada/324331a87fcb639dc238d11d4946ae3f541e3647/IMG_8063.jpeg",
+        caption=text
+    )
+
     await event.edit(text)
     from telethon import TelegramClient, events
 import asyncio
